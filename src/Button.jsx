@@ -1,7 +1,8 @@
 'use strict';
 
 import classNames from 'classnames';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Button = (props) => {
 
@@ -18,7 +19,7 @@ const Button = (props) => {
   };
 
   return (
-    <a href={`#viewport-slide-${ props.index + 1 }`}
+    <a href={`#panel-${props.index + 1}`}
       className="viewport-slider-button"
       onClick={handleClick}
       style={style}>

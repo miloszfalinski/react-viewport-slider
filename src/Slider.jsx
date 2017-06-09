@@ -1,6 +1,7 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Item from './Item';
 import Paginator from './Paginator';
@@ -33,14 +34,14 @@ export default class Slider extends Component {
     if (
       window.scrollY > this.lastScroll &&
       window.innerHeight + window.scrollY >
-        ((window.innerHeight * this.state.activeIndex) + window.innerHeight/2)
+      ((window.innerHeight * this.state.activeIndex) + window.innerHeight / 2)
     ) {
       this.setActive(this.state.activeIndex + 1);
-    // down
+      // down
     } else if (
       window.scrollY < this.lastScroll &&
       window.innerHeight + window.scrollY <
-        ((window.innerHeight * this.state.activeIndex) - window.innerHeight/1.5)
+      ((window.innerHeight * this.state.activeIndex) - window.innerHeight / 1.5)
     ) {
       this.setActive(this.state.activeIndex - 1);
     }
@@ -53,7 +54,7 @@ export default class Slider extends Component {
       if (scrollTo) {
         this.isAnimating = true;
         scrollToY(
-          this.refs[`slide-${ index }`].offsetTop,
+          this.refs[`panel-${index}`].offsetTop,
           500,
           'easeInOutQuint',
           () => {
@@ -70,7 +71,7 @@ export default class Slider extends Component {
     }
 
     return (
-      <div className="viewport-slider">
+      <div className="slider">
         <Paginator activeIndex={this.state.activeIndex}
           bullets={this.props.children.length}
           onClick={this.setActive} />
@@ -79,7 +80,7 @@ export default class Slider extends Component {
           let index = key + 1;
 
           return (
-            <div ref={`slide-${ index }`} key={index}>
+            <div ref={`panel-${index}`} key={index}>
               <Item {...child.props}
                 index={index}
                 hideButton={index === this.props.children.length}

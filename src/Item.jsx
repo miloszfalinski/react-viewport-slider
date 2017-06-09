@@ -1,6 +1,8 @@
 'use strict';
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import classNames from 'classnames';
 
 import Button from './Button';
@@ -15,8 +17,8 @@ const Item = (props) => {
   };
 
   const classes = classNames(
-    'viewport-slider-item',
-    `viewport-slider-item-${props.index}`,
+    'panel',
+    `panel-${props.index}`,
     props.itemClass
   );
 
