@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import classNames from 'classnames';
 import Bullet from './Bullet';
 
 const Paginator = (props) => {
@@ -15,8 +15,13 @@ const Paginator = (props) => {
     zIndex: 2
   }
 
+  let themeClass = classNames({
+    'theme-dark': props.activeIndex === 1 || props.activeIndex === 3 || props.activeIndex === 5,
+    'theme-light': props.activeIndex === 2 || props.activeIndex === 4
+  })
+
   return (
-    <div className="viewport-slider-paginator" style={style}>
+    <div className={`viewport-slider-paginator ${themeClass}`} style={style}>
       {Array.from(new Array(props.bullets), (x, i) => i + 1).map((i) => {
         return (
           <Bullet active={i === props.activeIndex}
