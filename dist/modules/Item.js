@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -27,7 +31,7 @@ var Item = function Item(props) {
     width: '100%'
   };
 
-  var classes = _classnames2['default']('viewport-slider-item', 'viewport-slider-item-' + props.index, props.itemClass);
+  var classes = _classnames2['default']('panel', 'panel-' + props.index, props.itemClass);
 
   var propsClone = Object.create(props || {});
   delete propsClone.children;
@@ -55,12 +59,12 @@ Item.defaultProps = {
 };
 
 Item.propTypes = {
-  buttonLabel: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element, _react.PropTypes.object]),
-  hideButton: _react.PropTypes.bool,
-  index: _react.PropTypes.number.isRequired,
-  itemClass: _react.PropTypes.string,
-  itemStyle: _react.PropTypes.object,
-  onClick: _react.PropTypes.func
+  buttonLabel: _propTypes2['default'].oneOfType([_propTypes2['default'].string, _propTypes2['default'].element, _propTypes2['default'].object]),
+  hideButton: _propTypes2['default'].bool,
+  index: _propTypes2['default'].number.isRequired,
+  itemClass: _propTypes2['default'].string,
+  itemStyle: _propTypes2['default'].object,
+  onClick: _propTypes2['default'].func
 };
 
 exports['default'] = Item;

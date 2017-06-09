@@ -14,6 +14,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Item = require('./Item');
 
 var _Item2 = _interopRequireDefault(_Item);
@@ -22,9 +26,9 @@ var _Paginator = require('./Paginator');
 
 var _Paginator2 = _interopRequireDefault(_Paginator);
 
-var _utilScrollToY = require('./util/scrollToY');
+var _scrollToY = require('scroll-to-y');
 
-var _utilScrollToY2 = _interopRequireDefault(_utilScrollToY);
+var _scrollToY2 = _interopRequireDefault(_scrollToY);
 
 var Slider = (function (_Component) {
   _inherits(Slider, _Component);
@@ -40,6 +44,9 @@ var Slider = (function (_Component) {
     this.handleScroll = this.handleScroll.bind(this);
     this.lastScroll = 0;
 
+    // window.addEventListener('set-active-panel', function (e) {
+    //   console.log(e.detail);
+    // });
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -69,10 +76,18 @@ var Slider = (function (_Component) {
     this.setState({ activeIndex: index }, function () {
       if (scrollTo) {
         _this.isAnimating = true;
-        _utilScrollToY2['default'](_this.refs['slide-' + index].offsetTop, 500, 'easeInOutQuint', function () {
+        _scrollToY2['default'](_this.refs['panel-' + index].offsetTop, 500, 'easeInOutQuint', function () {
           _this.isAnimating = false;
         });
       }
+      var setActivePanelEvent = new CustomEvent('set-active-panel', {
+        detail: {
+          index: _this.state.activeIndex
+        },
+        bubbles: true
+      });
+      // Send custom event to the parent
+      window.dispatchEvent(setActivePanelEvent);
     });
   };
 
@@ -85,7 +100,7 @@ var Slider = (function (_Component) {
 
     return _react2['default'].createElement(
       'div',
-      { className: 'viewport-slider' },
+      { className: 'slider' },
       _react2['default'].createElement(_Paginator2['default'], { activeIndex: this.state.activeIndex,
         bullets: this.props.children.length,
         onClick: this.setActive }),
@@ -94,7 +109,7 @@ var Slider = (function (_Component) {
 
         return _react2['default'].createElement(
           'div',
-          { ref: 'slide-' + index, key: index },
+          { ref: 'panel-' + index, key: index },
           _react2['default'].createElement(
             _Item2['default'],
             _extends({}, child.props, {

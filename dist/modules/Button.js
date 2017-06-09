@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var Button = function Button(props) {
 
   var style = {
@@ -28,7 +32,7 @@ var Button = function Button(props) {
 
   return _react2['default'].createElement(
     'a',
-    { href: '#viewport-slide-' + (props.index + 1),
+    { href: '#panel-' + (props.index + 1),
       className: 'viewport-slider-button',
       onClick: handleClick,
       style: style },
@@ -37,8 +41,8 @@ var Button = function Button(props) {
 };
 
 Button.propTypes = {
-  index: _react.PropTypes.number.isRequired,
-  onClick: _react.PropTypes.func
+  index: _propTypes2['default'].number.isRequired,
+  onClick: _propTypes2['default'].func
 };
 
 exports['default'] = Button;
