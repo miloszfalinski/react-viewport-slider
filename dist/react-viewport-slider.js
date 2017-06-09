@@ -1508,8 +1508,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 
 	  var themeClass = _classnames2['default']({
-	    'theme-dark': props.activeIndex === 1 || props.activeIndex === 3 || props.activeIndex === 5,
-	    'theme-light': props.activeIndex === 2 || props.activeIndex === 4
+	    'theme-dark': props.activeIndex === 1 || props.activeIndex === 3 || props.activeIndex === 4 || props.activeIndex === 5,
+	    'theme-light': props.activeIndex === 2
 	  });
 
 	  return _react2['default'].createElement(
