@@ -7,6 +7,7 @@ import Item from './Item';
 import Paginator from './Paginator';
 import scrollToY from 'scroll-to-y';
 
+
 export default class Slider extends Component {
 
   constructor(props) {
@@ -18,6 +19,9 @@ export default class Slider extends Component {
     this.handleScroll = this.handleScroll.bind(this);
     this.lastScroll = 0;
 
+    // window.addEventListener('set-active-panel', function (e) {
+    //   console.log(e.detail);
+    // });
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -62,6 +66,14 @@ export default class Slider extends Component {
           }
         );
       }
+      var setActivePanelEvent = new CustomEvent('set-active-panel', {
+        detail: {
+          index: this.state.activeIndex
+        },
+        bubbles: true
+      });
+      // Send custom event to the parent
+      window.dispatchEvent(setActivePanelEvent);
     });
   }
 
